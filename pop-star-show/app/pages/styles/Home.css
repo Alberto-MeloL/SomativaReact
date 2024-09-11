@@ -1,0 +1,64 @@
+:root {
+  --roxo: #d645ff;
+  --branco: #ffffff;
+}
+
+.container-home {
+  width: 100%;
+  height: 100%;
+}
+
+header {
+  width: 100%;
+  height: 13vh;
+  background-color: var(--roxo);
+  display: flex;
+  justify-content: center;
+}
+
+a {
+  color: var(--branco);
+}
+.links a{
+    padding-right: 15px;
+    text-decoration: none;
+}
+img {
+  height: 70px;
+}
+
+.header {
+  width: 95%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.titulo{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.titulo h1{
+    background-color: var(--roxo);
+    color: var(--branco);
+    border-radius: 5px;
+    width: 100%;
+    max-width: 300px;
+    text-align: center;
+}
+footer {
+  width: 100%;
+  height: 15vh;
+  background-color: var(--roxo);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+}
+
+
+footer p{
+    color: var(--branco);
+}

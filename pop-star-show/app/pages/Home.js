@@ -1,10 +1,14 @@
-export default function Home() {
+import "./styles/Home.css";
+const Home =()=> {
   return (
     <div className="container-home">
       <header>
         <div className="header">
           <div className="logo">
-            <img alt="" src="" />
+            <a href="#">
+
+            <img src="/img/logo.png" alt="Logo site" />
+            </a>
           </div>
           <nav>
             <div className="links">
@@ -16,7 +20,11 @@ export default function Home() {
       </header>
 
       <div className="sobre-nos">
+
+        <div className="titulo">
+
         <h1>Sobre nós</h1>
+        </div>
 
         <div className="texto-1">
           <p>
@@ -51,3 +59,5 @@ export default function Home() {
     </div>
   );
 }
+
+export default Home;
