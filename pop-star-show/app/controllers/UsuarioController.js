@@ -1,6 +1,4 @@
-import Usuario from "@/app/models/Usuario";
 import connectMongo from "../utils/dbConnect";
-import Ingresso from "../models/Ingresso";
 import Compra from "../models/Compra";
 
 // Listar compras
