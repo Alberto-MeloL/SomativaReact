@@ -3,5 +3,9 @@ body{
     padding: 0;
     width: 100%;
     height: 100vh;
-    font-family: Helvetica;
+    font-family: var(--font);
+}
+
+:root{
+    --font: Helvetica;
 }
