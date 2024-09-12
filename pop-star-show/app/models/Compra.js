@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
 const CompraSchema = new mongoose.Schema({
   nomeUser: {
@@ -15,4 +15,4 @@ const CompraSchema = new mongoose.Schema({
 
 const Compra = mongoose.models.Compra || mongoose.model("Compra", CompraSchema);
 
-export default Compra;
+module.exports = Compra;

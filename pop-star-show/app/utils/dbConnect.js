@@ -1,6 +1,7 @@
-import mongoose from "mongoose";
-
+const mongoose = require("mongoose");
+require("dotenv").config();
 const dataBaseUrl = process.env.DATABASE_URL;
+console.log(dataBaseUrl);
 if (!dataBaseUrl) {
   throw new Error(".env.local, não preenchido");
 }
@@ -20,4 +21,4 @@ const connectMongo = async () => {
   }
 };
 
-export default connectMongo;
+module.exports = connectMongo;

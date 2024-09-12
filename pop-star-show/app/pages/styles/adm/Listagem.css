@@ -1,0 +1,54 @@
+:root {
+  --roxo: #d645ff;
+  --roxo-2: #cb15ff;
+  --branco: #ffffff;
+}
+
+.container-ingresso {
+  width: 100%;
+  height: 100%;
+}
+
+header {
+  width: 100%;
+  height: 13vh;
+  background-color: var(--roxo);
+  display: flex;
+  justify-content: center;
+}
+.links a {
+  padding: 5px;
+  margin-right: 15px;
+  text-decoration: none;
+  color: var(--branco);
+  background-color: var(--roxo-2);
+  border-radius: 10px;
+}
+img {
+  height: 70px;
+}
+
+.header {
+  width: 95%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.titulo {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.titulo h1 {
+    width: 100%;
+    max-width: 400px;
+  background-color: var(--roxo);
+  color: var(--branco);
+  border-radius: 5px;
+  text-align: center;
+}
+
+.icones{
+    height: 20px;
+}

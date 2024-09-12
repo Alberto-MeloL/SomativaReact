@@ -1,4 +1,3 @@
-import { DevBundlerService } from "next/dist/server/lib/dev-bundler-service";
 import "./styles/Ingresso.css";
 
 const Ingresso = () => {
@@ -26,14 +25,32 @@ const Ingresso = () => {
 
       <div className="container-ingressos">
         <div className="ingresso">
-            <img src="/img/deep-purple.png" alt="Imagem ingresso"/>
-            <div className="titulo-ingresso">Deep Purple</div>
-            <div className="local">blkalblbla</div>
-            <div className="data-local">12121-11</div>
-            <div className="comprar-ingresso">
-                <button id="btn-comprar">Comprar</button>
-            </div>
+          <img src="/img/deep-purple.png" alt="Imagem ingresso" className="imagem-ingresso"/>
+          <div className="titulo-ingresso">Deep Purple</div>
+          <div className="local">
+            <img
+              src="/img/location_on.png"
+              alt="Icone local"
+              className="icones"
+            />
+            Goiânia - PASSEIO DAS ÁGUAS SHOPPING
+          </div>
+          <div className="data-local">
+            <img src="/img/calendar.png" alt="Icone local" className="icones" />
+            14:00 - 15/09/2024
+          </div>
+          <div className="comprar-ingresso">
+            <div className="info-valor">
 
+            <img src="/img/dollar.png" alt="Icone local" className="icones" />
+            R$ - 140.00
+            </div>
+            <div className="btn-comprar">
+
+
+            <button id="btn-comprar">Comprar</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>

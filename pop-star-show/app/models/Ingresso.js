@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
 const IngressoSchema = new mongoose.Schema({
   userId: {
@@ -10,9 +10,9 @@ const IngressoSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  valor:{
+  valor: {
     type: Number,
-    required: true
+    required: true,
   },
   local: {
     type: String,
@@ -23,11 +23,12 @@ const IngressoSchema = new mongoose.Schema({
     required: true,
   },
   horario: {
-    type: Date.now,
+    type: Date,
     required: true,
+    default: Date.now, // Valor padrão é a data e hora atual
   },
 });
 
 const Ingresso =
   mongoose.models.Ingresso || mongoose.model("Ingresso", IngressoSchema);
-export default Ingresso;
+module.exports = Ingresso;
