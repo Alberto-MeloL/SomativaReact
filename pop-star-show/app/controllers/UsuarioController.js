@@ -2,6 +2,7 @@ const connectMongo = require("../utils/dbConnect");
 const Compra = require("../models/Compra");
 const Usuario = require("../models/Usuario");
 const Ingresso = require("../models/Ingresso");
+// porque tem que reiniciar o node
 
 // CRUD de ingressos
 //Criar ingresso(método do administrador)
@@ -37,22 +38,44 @@ const addIngresso = async (req, res) => {
   }
 };
 
+// Deletar ingresso (método do administrador)
+const deletarIngresso = async (req, res) => {
+  const {ingressoId} = req.body;
+  await connectMongo();
+  console.log(ingressoId);
+  try {
+const deletarIngresso = await Ingresso.findByIdAndDelete(ingressoId);
+if (!deletarIngresso) return res.status(404).json({ message: "Ingresso não encontrado." });
+
+  } catch (err) {
+    res.status(500).json({message: "Não foi possível deletar o ingresso."})
+    console.error(err);
+  }
+};
+
+const atualizarIngresso = async (req, res) => {
+  const { ingressoId } = req.body;
+
+  await connectMongo();
+  console.log(ingressoId);
+};
+
 // Listar compras(método do usuário)
 const getCompras = async (req, res) => {
 
   const {usuarioId} = req.body;
   await connectMongo();
   try {
-    const todos = await Compra.find({ usuarioId });
+    const compra = await Compra.find({ usuarioId });
     console.log(usuarioId);
-    res.status(200).json({ todos });
+    res.status(200).json({ compra });
   } catch (error) {
     res.status(500).json({ error });
   }
 };
 
 // Listar todos os ingressos disponíveis (método para usuário/administrador)
-const getIngressos = async (req, res) => {
+const getIngresso = async (req, res) => {
   await connectMongo();
   try {
     const ingressos = await Ingresso.find();
@@ -64,12 +87,6 @@ const getIngressos = async (req, res) => {
   }
 };
 
-// Deletar ingresso (método do administrador)
-const deletarIngressos = async (req, res) => {
-  await connectMongo();
-  try {
-  } catch (err) {}
-};
 
 //Comprar ingresso (método do usuário)
 const comprarIngresso = async (req, res) => {
@@ -115,11 +132,15 @@ const cadUsuario = async (req, res) => {
   }
 };
 
+
+
 // Exportar as funções para outros arquivos
 module.exports = {
   getCompras,
   comprarIngresso,
   cadUsuario,
   addIngresso,
-  getIngressos,
+  getIngresso,
+  deletarIngresso,
+  atualizarIngresso,
 };
