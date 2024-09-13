@@ -9,6 +9,7 @@ const {
   addIngresso,
   getIngresso,
   deletarIngresso,
+  atualizarIngresso,
 } = require("../controllers/UsuarioController"); // Ajuste o caminho conforme sua estrutura
 
 // Definir as rotas e associá-las aos controladores
@@ -16,7 +17,7 @@ router.post("/ingresso", addIngresso);
 router.get("/ingresso", getIngresso)
 router.get("/ingresso", getCompras); 
 router.delete("/ingresso", deletarIngresso);
-
+router.patch("/ingresso", atualizarIngresso);
 router.post("/comprar-ingresso", comprarIngresso); 
 router.post("/cad-usuario", cadUsuario);
 

@@ -40,30 +40,48 @@ const addIngresso = async (req, res) => {
 
 // Deletar ingresso (método do administrador)
 const deletarIngresso = async (req, res) => {
-  const {ingressoId} = req.body;
+  const { ingressoId } = req.body;
   await connectMongo();
   console.log(ingressoId);
   try {
-const deletarIngresso = await Ingresso.findByIdAndDelete(ingressoId);
-if (!deletarIngresso) return res.status(404).json({ message: "Ingresso não encontrado." });
-
+    const deletarIngresso = await Ingresso.findByIdAndDelete(ingressoId);
+    if (!deletarIngresso) {
+      return res.status(404).json({ message: "Ingresso não encontrado." });
+    }
   } catch (err) {
-    res.status(500).json({message: "Não foi possível deletar o ingresso."})
+    res.status(500).json({ message: "Não foi possível deletar o ingresso." });
     console.error(err);
   }
 };
 
+// Método para atualizar o ingresso (método do administrador)
 const atualizarIngresso = async (req, res) => {
-  const { ingressoId } = req.body;
+  const { ingressoId, nome, valor, local, data, horario } = req.body;
 
   await connectMongo();
+// console.log(novosDados);
+  try {
+    const ingressoAtualizado = await Ingresso.findByIdAndUpdate(
+      ingressoId,
+      { nome, valor, local, data, horario},
+      { new: true , runValidators:true}
+    );
+
+    if (!ingressoAtualizado) {
+      return res.status(404).json({ message: "Ingresso não encontrado." });
+    }
+
+    return res.status(200).json(ingressoAtualizado);
+  } catch (err) {
+    res.status(500).json({ message: "Não foi possível atualizar o ingresso." });
+    console.error(err);
+  }
   console.log(ingressoId);
 };
 
 // Listar compras(método do usuário)
 const getCompras = async (req, res) => {
-
-  const {usuarioId} = req.body;
+  const { usuarioId } = req.body;
   await connectMongo();
   try {
     const compra = await Compra.find({ usuarioId });
@@ -87,12 +105,11 @@ const getIngresso = async (req, res) => {
   }
 };
 
-
 //Comprar ingresso (método do usuário)
 const comprarIngresso = async (req, res) => {
   const { usuarioId, nomeIngresso } = req.body;
   await connectMongo();
-  const nomeUsuario = Usuario.findOne({nome: usuarioId});
+  const nomeUsuario = Usuario.findOne({ nome: usuarioId });
   // const nomeIngresso = Ingresso.findOne({nome: ingressoId});
   console.log(nomeUsuario);
   // console.log(nomeIngresso);
@@ -101,13 +118,13 @@ const comprarIngresso = async (req, res) => {
       nomeUsuario,
       nomeIngresso,
       usuarioId,
-       // Associa a tarefa ao usuário logado
+      // Associa a tarefa ao usuário logado
     });
     await newCompra.save();
     res.status(201).json({ todo: newCompra });
   } catch (err) {
     res.status(500).json({ message: "Erro ao finalizar a compra." });
-    console.error(err)
+    console.error(err);
   }
 };
 
@@ -131,8 +148,6 @@ const cadUsuario = async (req, res) => {
     res.status(500).json({ message: `Erro ao criar o usuário ${err}` });
   }
 };
-
-
 
 // Exportar as funções para outros arquivos
 module.exports = {
