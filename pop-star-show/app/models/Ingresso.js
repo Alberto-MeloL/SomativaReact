@@ -23,9 +23,8 @@ const IngressoSchema = new mongoose.Schema({
     required: true,
   },
   horario: {
-    type: Date,
+    type: Date, // Deveria ser Date se você está enviando uma data e hora completas
     required: true,
-    default: Date.now, // Valor padrão é a data e hora atual
   },
 });
 

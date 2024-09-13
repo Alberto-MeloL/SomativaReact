@@ -7,11 +7,13 @@ const {
   comprarIngresso,
   cadUsuario,
   addIngresso,
+  getIngressos,
 } = require("../controllers/UsuarioController"); // Ajuste o caminho conforme sua estrutura
 
-// // Definir as rotas e associá-las aos controladores
-// router.get("/compras", getCompras); // Descomentado e corrigido
-// router.post("/comprar-ingresso", comprarIngresso); // Descomentado e corrigido
+// Definir as rotas e associá-las aos controladores
+router.get("/compras", getCompras); 
+router.post("/comprar-ingresso", comprarIngresso); 
+router.get("/ingressos", getIngressos)
 router.post("/cad-usuario", cadUsuario);
 router.post("/add-ingresso", addIngresso);
 
