@@ -24,8 +24,7 @@ const IngressoSchema = new mongoose.Schema({
   },
   horario: {
     type: Date,
-    required: true,
-    default: Date.now, // Valor padrão é a data e hora atual
+    required: true, // Espera uma data/hora precisa
   },
 });
 

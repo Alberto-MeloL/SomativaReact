@@ -3,6 +3,16 @@ const Compra = require( "../models/Compra");
 const Usuario = require( "../models/Usuario");
 const Ingresso = require("../models/Ingresso");
 
+const getIngressos = async (req, res) =>{
+await connectMongo();
+
+try {
+  
+} catch (err) {
+  
+}
+};
+
 // Listar compras(ingressos)
  const getCompras = async (req, res) => {
   await connectMongo();
@@ -53,9 +63,8 @@ const Ingresso = require("../models/Ingresso");
 };
 
 // método para comprar criar ingresso(adm)
- const addIngresso = async (req, res) => {
-  const {nome, valor, local, horario, data } =
-    req.body;
+const addIngresso = async (req, res) => {
+  const { nome, valor, local, horario, data, userId } = req.body;
   await connectMongo();
   try {
     const newIngresso = new Ingresso({
@@ -64,13 +73,16 @@ const Ingresso = require("../models/Ingresso");
       local,
       horario,
       data,
-      // userId: req.user.userId, // Associa a tarefa ao usuário logado
+      userId
     });
     await newIngresso.save();
-    res.status(201).json({ todo: newTodo });
+    res.status(201).json({ ingresso: newIngresso });
   } catch (error) {
-    res.status(500).json({ message: "Erro ao adicionar ingresso" });
+    res
+      .status(500)
+      .json({ message: `Erro ao adicionar ingresso: ${error.message}` }); // Use error.message
   }
 };
+
 
 module.exports = {getCompras, comprarIngresso,cadUsuario, addIngresso};
