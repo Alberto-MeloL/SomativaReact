@@ -1,5 +1,6 @@
 :root {
-  --roxo: #d645ff;
+  
+  --roxo-2: #cb15ff;
   --branco: #ffffff;
 }
 
@@ -16,13 +17,14 @@ header {
   justify-content: center;
 }
 
-a {
+.links-header {
+  background-color: var(--roxo-2);
+  border-radius: 5px;
   color: var(--branco);
+  text-decoration: none;
+  padding: 5px;
 }
-.links a{
-    padding-right: 15px;
-    text-decoration: none;
-}
+
 img {
   height: 70px;
 }
@@ -34,6 +36,27 @@ img {
   justify-content: space-between;
   align-items: center;
 }
+.autenticacao{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+.links{
+  width: 100%;
+  height: 100%;
+display: flex;
+flex-direction: row;
+gap: 10px;
+}
+
+
+.links p{
+  margin-right: 7px;
+  color: var(--branco);
+}
+
 .titulo{
     width: 100%;
     display: flex;

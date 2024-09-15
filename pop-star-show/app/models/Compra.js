@@ -1,16 +1,22 @@
 const mongoose = require("mongoose");
 
 const CompraSchema = new mongoose.Schema({
-  nomeUser: {
-    type: mongoose.Schema.Types.ObjectId,
+  nomeUsuario: {
+    type: String,
     ref: "Usuario",
-    requied: true,
-  },
-  nomeIngresso: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Ingresso",
     required: true,
   },
+  nomeIngresso: {
+    type: String,
+    ref: "Ingresso",
+    required: true,
+    unique: true
+  },
+  usuarioId:{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Usuario",
+    required:true
+  }
 });
 
 const Compra = mongoose.models.Compra || mongoose.model("Compra", CompraSchema);

@@ -9,6 +9,7 @@ const IngressoSchema = new mongoose.Schema({
   nome: {
     type: String,
     required: true,
+    unique: true
   },
   valor: {
     type: Number,
@@ -25,6 +26,7 @@ const IngressoSchema = new mongoose.Schema({
   horario: {
     type: Date,
     required: true, // Espera uma data/hora precisa
+
   },
 });
 

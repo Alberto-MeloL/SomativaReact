@@ -12,9 +12,9 @@ const Ingresso = () => {
           </div>
           <nav>
             <div className="links">
-              <a href="#">Home</a>
-              <a href="#">Comprar</a>
-              <a href="#">Ver ingressos</a>
+              <a href="/">Home</a>
+              <a href="/comprar">Comprar</a>
+              <a href="/ingressos">Ver ingressos</a>
             </div>
           </nav>
         </div>

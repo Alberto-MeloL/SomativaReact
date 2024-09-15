@@ -1,0 +1,72 @@
+:root {
+  --cinza: #b2b2b2;
+  --roxo: #CB15FF;
+  --branco: #ffffff;
+}
+img {
+  width: 100px;
+  height: 120px;
+}
+.container-cadastro {
+  width: 100%;
+  height: 100%;
+  background-image: url("/img/fundo-login-cadastro.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.container-formulario {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.formulario {
+  width: 100%;
+  height: 100%;
+  max-height: 400px;
+  max-width: 500px;
+  border-radius: 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: var(--cinza);
+}
+
+.inputs {
+  width: 100%;
+  height: 100%;
+  max-height: 50px;
+  max-width: 400px;
+  border-radius: 10px;
+  margin-bottom: 5px;
+  border: none;
+  outline: 0;
+}
+.links {
+  width: 50%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.links a{
+    color: var(--roxo);
+}
+
+#btn-cadastrar {
+  width: 100%;
+  max-width: 150px;
+  background-color: var(--roxo);
+  border: none;
+  border-radius: 10px;
+  padding: 7px;
+  color: var(--branco);
+  cursor: pointer;
+}
+

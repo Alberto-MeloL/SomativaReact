@@ -1,3 +1,4 @@
+import Login from "./Login";
 import "./styles/Home.css";
 const Home =()=> {
   return (
@@ -5,25 +6,33 @@ const Home =()=> {
       <header>
         <div className="header">
           <div className="logo">
-            <a href="#">
-
-            <img src="/img/logo.png" alt="Logo site" />
+            <a href="/">
+              <img src="/img/logo.png" alt="Logo site" />
             </a>
           </div>
           <nav>
             <div className="links">
-              <a href="#">Sobre nós</a>
-              <a href="#">Login/Cadastro</a>
+              <div className="autenticacao">
+                <a href="/" className="links-header">
+                  Sobre nós
+                </a>
+
+                <a href="/login" className="links-header">
+                  Login
+                </a>
+                <p>/</p>
+                <a href="/cadastro" className="links-header">
+                  Cadastro
+                </a>
+              </div>
             </div>
           </nav>
         </div>
       </header>
 
       <div className="sobre-nos">
-
         <div className="titulo">
-
-        <h1>Sobre nós</h1>
+          <h1>Sobre nós</h1>
         </div>
 
         <div className="texto-1">
@@ -59,5 +68,18 @@ const Home =()=> {
     </div>
   );
 }
+
+
+const App = ()=>{
+return (
+  <Router>
+    <Routes>
+      <Route path="/" element={<Home/>}/>
+      <Route path="/" element={<Home/>} />
+      <Route path="/login" element={<Login/>} />
+    </Routes>
+  </Router>
+);
+};
 
 export default Home;
