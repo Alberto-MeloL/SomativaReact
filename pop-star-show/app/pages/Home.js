@@ -1,6 +1,5 @@
-import Login from "./Login";
 import "./styles/Home.css";
-const Home =()=> {
+const Home = () => {
   return (
     <div className="container-home">
       <header>
@@ -67,19 +66,6 @@ const Home =()=> {
       </footer>
     </div>
   );
-}
-
-
-const App = ()=>{
-return (
-  <Router>
-    <Routes>
-      <Route path="/" element={<Home/>}/>
-      <Route path="/" element={<Home/>} />
-      <Route path="/login" element={<Login/>} />
-    </Routes>
-  </Router>
-);
 };
 
 export default Home;

@@ -1,4 +1,5 @@
 const connectMongo = require("../utils/dbConnect");
+const bcrypt = require("bcrypt");
 const Compra = require("../models/Compra");
 const Usuario = require("../models/Usuario");
 const Ingresso = require("../models/Ingresso");
@@ -31,9 +32,9 @@ const addIngresso = async (req, res) => {
       });
       await newIngresso.save();
       res.status(201).json({ todo: newIngresso });
-    } catch (error) {
+    } catch (err) {
       res.status(500).json({ message: "Erro ao adicionar ingresso" });
-      console.error(res);
+      console.error(err);
     }
   }
 };
@@ -48,6 +49,8 @@ const deletarIngresso = async (req, res) => {
     if (!deletarIngresso) {
       return res.status(404).json({ message: "Ingresso não encontrado." });
     }
+
+ res.status(200).json({ message: "Ingresso deletado com sucesso." });
   } catch (err) {
     res.status(500).json({ message: "Não foi possível deletar o ingresso." });
     console.error(err);
@@ -105,24 +108,37 @@ const getIngresso = async (req, res) => {
   }
 };
 
-//Comprar ingresso (método do usuário)
 const comprarIngresso = async (req, res) => {
-  const { usuarioId, nomeIngresso } = req.body;
+  const { usuarioId, ingressoId } = req.body;
+
+  // Conectar ao MongoDB
   await connectMongo();
-  const nomeUsuario = Usuario.findOne({ nome: usuarioId });
-  // const nomeIngresso = Ingresso.findOne({nome: ingressoId});
-  console.log(nomeUsuario);
-  // console.log(nomeIngresso);
+
   try {
+    // Buscar usuário e ingresso
+    const usuario = await Usuario.findOne({ _id: usuarioId }).exec();
+    const ingresso = await Ingresso.findOne({ _id: ingressoId }).exec();
+    
+    // Verificar se usuário e ingresso foram encontrados
+    if (!usuario || !ingresso) {
+      return res.status(404).json({ message: "Usuário ou ingresso não encontrado." });
+    }
+
+    // Criar nova compra
     const newCompra = new Compra({
-      nomeUsuario,
-      nomeIngresso,
-      usuarioId,
-      // Associa a tarefa ao usuário logado
+      nomeUsuario: usuario.nome, // Extrair o nome do usuário
+      nomeIngresso: ingresso.nome, // Extrair o nome do ingresso
+      usuarioId: usuario._id, // Usar o ID do usuário
+      ingressoId: ingresso._id // Usar o ID do ingresso
     });
+
+    // Salvar nova compra
     await newCompra.save();
-    res.status(201).json({ todo: newCompra });
+    
+    // Responder com status 201 e dados da compra
+    res.status(201).json({ compra: newCompra });
   } catch (err) {
+    // Responder com status 500 e mensagem de erro
     res.status(500).json({ message: "Erro ao finalizar a compra." });
     console.error(err);
   }
@@ -133,17 +149,17 @@ const cadUsuario = async (req, res) => {
   const { nome, email, cpf, senha, tipo } = req.body;
 
   await connectMongo();
-
+const hashedPassword = await bcrypt.hash(senha, 10);
   try {
     const newUsuario = new Usuario({
       nome,
       email,
       cpf,
-      senha,
+      senha: hashedPassword,
       tipo,
     });
     await newUsuario.save();
-    res.status(201).json({ message: `Usuário criado com sucesso ${res}` });
+    res.status(201).json({newUsuario});
   } catch (err) {
     res.status(500).json({ message: `Erro ao criar o usuário ${err}` });
   }
